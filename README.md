@@ -1,5 +1,6 @@
+nodejs required <br />
+
 # install:
-install nodejs
 npm install oidc-client --save	<br />
 
 

@@ -5,7 +5,7 @@ npm install oidc-client --save	<br />
 
 
 # build:
-git clone https://github.com/barisonen/BIL420OIDCSSO.git
+git clone https://github.com/barisonen/BIL420OIDCSSO.git  <br />
 cd BIL420OIDCSSO <br />
 npm install	<br />
 npm run build	<br />

@@ -1,8 +1,8 @@
-npm install oidc-client --save
-npm install
-npm run build
+npm install oidc-client --save	<br />
+npm install	<br />
+npm run build	<br />
 
-npm start
-http://localhost:15000
+npm start	<br />
+http://localhost:15000	<br />
 
-npm test
+npm test	<br />

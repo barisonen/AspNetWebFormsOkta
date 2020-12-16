@@ -1,1 +1,0 @@
-const Version = "1.11.0-beta.2"; export {Version};

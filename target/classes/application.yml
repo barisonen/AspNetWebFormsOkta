@@ -9,6 +9,9 @@ spring:
           google:
             client-id: 644307834795-hl39kv5dmrgfnqq2rq7f24lovtubi2pk.apps.googleusercontent.com
             client-secret: LomUWqUyji3EXcJyCww3BEhO
+          facebook:
+            client-id: 432825251072429
+            client-secret: 24a56aa572a351e320d462abd4be9e93
 #logging:
 #  level:
 #    org.springframework.security: DEBUG

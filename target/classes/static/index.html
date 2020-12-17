@@ -21,7 +21,12 @@
 	<br> <br/>
 	
     <div class="container unauthenticated" style="text-align:center; font-size:25px;">
-        Github ile giriş yap: <a href="/oauth2/authorization/github">tıkla</a>
+        <div>
+			Github ile giriş yap: <a href="/oauth2/authorization/github">tıkla</a>
+		</div>
+		<div>
+			Google ile giriş yap: <a href="/oauth2/authorization/google">tıkla</a>
+		</div>
     </div>
     <div class="container authenticated" style="display: none; text-align:center; font-size:25px;">
         Giriş yapıldı <span id="user"></span>
@@ -39,7 +44,6 @@
                       || settings.type == 'DELETE') {
                     if (!(/^http:.*/.test(settings.url) || /^https:.*/
                         .test(settings.url))) {
-                      // Only send the token to relative URLs i.e. locally.
                       xhr.setRequestHeader("X-XSRF-TOKEN",
                           Cookies.get('XSRF-TOKEN'));
                     }

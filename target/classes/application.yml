@@ -6,7 +6,9 @@ spring:
           github:
             client-id: fef7cc53f58ba39b3c76
             client-secret: 196e53168458f0d01b1a2fafafbe9fe3c7c97b75
-
+          google:
+            client-id: 644307834795-hl39kv5dmrgfnqq2rq7f24lovtubi2pk.apps.googleusercontent.com
+            client-secret: LomUWqUyji3EXcJyCww3BEhO
 #logging:
 #  level:
 #    org.springframework.security: DEBUG

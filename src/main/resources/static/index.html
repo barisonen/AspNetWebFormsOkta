@@ -41,7 +41,6 @@
 		<br> <br/>
         <div>
             <button onClick="logout()" class="btn btn-primary">Çıkış yap</button>
-            <button onClick="tryMe()" class="btn btn-primary">bas</button>
         </div>
         <div>
 			<input type="file" name="inputfile"
@@ -85,22 +84,32 @@
         
           
           
-          function tryMe() {
+          function checkFile() {
         	// Kullanıcı adından salt oluştur
         	  var salt = document.getElementById("user").innerHTML;
-        	  const myCipher = cipher(salt);
-																					//burayı bilmiyolar
-        	  var secretString = document.getElementById("user").innerHTML.concat(" kisisi icin gizli string");
-			alert(secretString);
+        	  const myCipher = cipher(salt);	//burayı bilmiyolar
+        	  var secretString = salt.concat(".txt", "sagasasdadvsdvascasdasd");
         	  //salt ile text'i şifrele
-        	  var encrypted = myCipher(secretString);
-        		
-        	alert(encrypted);
-
         	  
-        	  const myDecipher = decipher(salt);
-        	  var decrypted = myDecipher(encrypted);
-        	  alert(decrypted);
+        	 
+        	  var encrypted = myCipher(secretString);
+        									//C:fakepath falan döndüğü için
+        		salt = document.getElementById('inputfile').value.substring(12);
+   
+        		
+        		secretString = salt.concat("sagasasdadvsdvascasdasd");
+        	
+        		var encrypted2 = myCipher(secretString);
+        		
+        		if(encrypted === encrypted2) {
+        			return true;
+        		}
+        		else {
+        			return false;
+        		}
+        	  
+        	  
+        	  
           }
           const cipher = salt => {
         	    const textToChars = text => text.split('').map(c => c.charCodeAt(0));
@@ -127,13 +136,22 @@
         	document.getElementById('inputfile') 
             .addEventListener('change', function() { 
               
-            var fr=new FileReader(); 
-            fr.onload=function(){ 
-                document.getElementById('output') 
-                        .textContent=fr.result; 
-            } 
-              
-            fr.readAsText(this.files[0]); 
+            	if(!checkFile()) {
+            		alert("Bu sizin dosyanız değil");
+            	} 
+            	else {
+            		var salt = document.getElementById("user").innerHTML;
+            		var myDecipher2 = decipher(salt);
+            		var fr=new FileReader(); 
+                    fr.onload=function(){ 
+                        document.getElementById('output') 
+                                .textContent=myDecipher2(fr.result); 
+                    } 
+                      
+                    fr.readAsText(this.files[0]); 
+                    
+                    
+            	}
             }) 
         </script>
 </body>

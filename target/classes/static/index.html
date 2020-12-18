@@ -30,15 +30,31 @@
 		<div>
 			Facebook ile giriş yap: <a href="/oauth2/authorization/facebook">tıkla</a>
 		</div>
+		
+		
+
     </div>
     <div class="container authenticated" style="display: none; text-align:center; font-size:25px;">
-        Giriş yapıldı <span id="user"></span>
+        Giriş Başarılı! 
+		<br> <br/>
+		Hoşgeldiniz <span id="user"></span>
+		<br> <br/>
         <div>
             <button onClick="logout()" class="btn btn-primary">Çıkış yap</button>
+            <button onClick="tryMe()" class="btn btn-primary">bas</button>
         </div>
+        <div>
+			<input type="file" name="inputfile"
+            id="inputfile"> 
+    		<br> 
+   
+    		<pre id="output"></pre> 
+		</div>
+		
     </div>
     <script type="text/javascript"
     src="/webjars/js-cookie/js.cookie.js"></script>
+
     <script type="text/javascript">
           $
               .ajaxSetup({
@@ -66,6 +82,59 @@
             })
             return true;
           }
+        
+          
+          
+          function tryMe() {
+        	// Kullanıcı adından salt oluştur
+        	  var salt = document.getElementById("user").innerHTML;
+        	  const myCipher = cipher(salt);
+																					//burayı bilmiyolar
+        	  var secretString = document.getElementById("user").innerHTML.concat(" kisisi icin gizli string");
+			alert(secretString);
+        	  //salt ile text'i şifrele
+        	  var encrypted = myCipher(secretString);
+        		
+        	alert(encrypted);
+
+        	  
+        	  const myDecipher = decipher(salt);
+        	  var decrypted = myDecipher(encrypted);
+        	  alert(decrypted);
+          }
+          const cipher = salt => {
+        	    const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+        	    const byteHex = n => ("0" + Number(n).toString(16)).substr(-2);
+        	    const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+
+        	    return text => text.split('')
+        	        .map(textToChars)
+        	        .map(applySaltToChar)
+        	        .map(byteHex)
+        	        .join('');
+        	}
+
+        	const decipher = salt => {
+        	    const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+        	    const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+        	    return encoded => encoded.match(/.{1,2}/g)
+        	        .map(hex => parseInt(hex, 16))
+        	        .map(applySaltToChar)
+        	        .map(charCode => String.fromCharCode(charCode))
+        	        .join('');
+        	}
+        	
+        	document.getElementById('inputfile') 
+            .addEventListener('change', function() { 
+              
+            var fr=new FileReader(); 
+            fr.onload=function(){ 
+                document.getElementById('output') 
+                        .textContent=fr.result; 
+            } 
+              
+            fr.readAsText(this.files[0]); 
+            }) 
         </script>
 </body>
 </html>
